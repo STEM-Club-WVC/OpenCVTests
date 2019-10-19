@@ -1,0 +1,2 @@
+speech rec
+https://realpython.com/python-speech-recognition/
