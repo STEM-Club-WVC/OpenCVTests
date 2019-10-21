@@ -4,7 +4,7 @@ import cv2
 path = r'C:\Users\Rajnish\Desktop\geeksforgeeks.png'
   
 # Reading an image in default mode 
-image = cv2.imread('C:\Users\tucke\Desktop\STEM Club\Open CV Tests\Line Detection\src.jpg') 
+image = cv2.imread(r'D:\C# Projects\Git\OpenCVTests\Line Detection\src.jpg') 
   
 # Window name in which image is displayed 
 window_name = 'image'
