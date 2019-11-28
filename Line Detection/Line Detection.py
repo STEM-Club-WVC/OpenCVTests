@@ -42,4 +42,5 @@ lines_edges = cv2.addWeighted(img, 0.8, line_image, 1, 0)
 print("Finished.")
 
 cv2.imshow('image', line_image)
+cv2.waitKey()
 
