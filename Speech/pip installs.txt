@@ -10,3 +10,6 @@ pip install pyaudio
 
 Windows
 pip install pyaudio
+
+for google
+pip install google-cloud-speech
