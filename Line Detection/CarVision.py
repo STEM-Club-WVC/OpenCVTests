@@ -1,14 +1,15 @@
 import cv2
 import numpy as np
+import logging
 
 def detect_edges(frame):
     # filter for blue lane lines
     hsv = cv2.cvtColor(frame, cv2.COLOR_BGR2HSV)
-    show_image("hsv", hsv)
+    #show_image("hsv", hsv)
     lower_blue = np.array([60, 40, 40])
     upper_blue = np.array([150, 255, 255])
     mask = cv2.inRange(hsv, lower_blue, upper_blue)
-    show_image("blue mask", mask)
+    #show_image("blue mask", mask)
 
     # detect edges
     edges = cv2.Canny(mask, 200, 400)
@@ -107,7 +108,7 @@ def detect_lane(frame):
     
     return lane_lines
 
-def display_lines(frame, lines, line_color=(0, 255, 0), line_width=2):
+def display_lines(frame, lines, show=true line_color=(0, 255, 0), line_width=2):
     line_image = np.zeros_like(frame)
     if lines is not None:
         for line in lines:
@@ -116,5 +117,6 @@ def display_lines(frame, lines, line_color=(0, 255, 0), line_width=2):
     line_image = cv2.addWeighted(frame, 0.8, line_image, 1, 1)
     return line_image
 
-lane_lines_image = display_lines(frame, lane_lines)
-cv2.imshow("lane lines", lane_lines_image)
+    lane_lines_image = display_lines(frame, lane_lines)
+    if(show)cv2.imshow("lane lines", lane_lines_image)
+    return lane_lines_image
