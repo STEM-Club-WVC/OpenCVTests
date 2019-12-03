@@ -1,5 +1,6 @@
 import cv2
 import numpy as np
+from matplotlib import pyplot as plt
 
 print("Starting image assesment(" + "src.jpg" + ")")
 
@@ -17,6 +18,16 @@ mask = cv2.inRange(hsv, lower_blue, upper_blue)
 #Collect edges
 edges = cv2.Canny(mask, 200, 400)
 
+line_image = np.copy(img) * 0  # creating a blank to draw lines on
+
+plt.subplot(121),plt.imshow(img,cmap = 'gray')
+plt.title('Original Image'), plt.xticks([]), plt.yticks([])
+plt.subplot(122),plt.imshow(edges,cmap = 'gray')
+plt.title('Edge Image'), plt.xticks([]), plt.yticks([])
+
+plt.show()
+
+cv2.imshow('image', line_image)
 
 print("Finished.")
 
