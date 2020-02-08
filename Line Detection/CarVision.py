@@ -2,6 +2,8 @@ import cv2
 import numpy as np
 import logging
 
+#Source: "https://towardsdatascience.com/deeppicar-part-4-lane-following-via-opencv-737dd9e47c96"
+
 def detect_edges(frame):
     # filter for blue lane lines
     hsv = cv2.cvtColor(frame, cv2.COLOR_BGR2HSV)
