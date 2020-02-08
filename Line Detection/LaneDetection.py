@@ -19,7 +19,7 @@ rho = 1  # distance resolution in pixels of the Hough grid
 theta = np.pi / 180  # angular resolution in radians of the Hough grid     
 threshold = 15  # minimum number of votes (intersections in Hough grid cell)           
 min_line_length = 50  # minimum number of pixels making up a line                
-max_line_gap = 20  # maximum gap in pixels between connectable line segments
+max_line_gap = 50  # maximum gap in pixels between connectable line segments
 line_image = np.copy(img) * 0  # creating a blank to draw lines on
 print("type1: " + type(img).__name__)
 print("type2: " + type(line_image).__name__)                                                        # Run Hough on edge detected image
@@ -31,6 +31,24 @@ for line in lines:
 #Finally, draw the lines on your srcImage.        # Draw the lines on the  image
 lines_edges = cv2.addWeighted(img, 0.8, line_image, 1, 0)
 
+scale_percent = 90 # percent of original size
+width = int(img.shape[1] * scale_percent / 100)
+height = int(img.shape[0] * scale_percent / 100)
+dim = (width, height)
+# resize image
+lines_edges_downscaled = cv2.resize(line_image, dim, interpolation = cv2.INTER_AREA)
+
+# resize image
+img_downscaled = cv2.resize(img, dim, interpolation = cv2.INTER_AREA)
+
+# resize image
+gray_downscaled = cv2.resize(gray, dim, interpolation = cv2.INTER_AREA)
+
 print("Finished.")
-cv2.imshow('image', line_image)
+#cv2.imshow('image', line_image)
+cv2.imshow('original image', img_downscaled)
+
+cv2.imshow('gray_downscaled', gray_downscaled)
+
+cv2.imshow('image wth lines', lines_edges_downscaled)
 cv2.waitKey()

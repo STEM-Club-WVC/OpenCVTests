@@ -108,7 +108,7 @@ def detect_lane(frame):
     
     return lane_lines
 
-def display_lines(frame, lines, show=true line_color=(0, 255, 0), line_width=2):
+def display_lines(frame, lines, show=True, line_color=(0, 255, 0), line_width=2):
     line_image = np.zeros_like(frame)
     if lines is not None:
         for line in lines:
@@ -117,6 +117,16 @@ def display_lines(frame, lines, show=true line_color=(0, 255, 0), line_width=2):
     line_image = cv2.addWeighted(frame, 0.8, line_image, 1, 1)
     return line_image
 
-    lane_lines_image = display_lines(frame, lane_lines)
-    if(show)cv2.imshow("lane lines", lane_lines_image)
-    return lane_lines_image
+#Import image
+frame = cv2.imread('src.jpg')
+hsv = cv2.cvtColor(frame, cv2.COLOR_BGR2HSV)
+lower_blue = np.array([60, 40, 40])
+upper_blue = np.array([150, 255, 255])
+mask = cv2.inRange(hsv, lower_blue, upper_blue)
+
+edges = cv2.Canny(mask, 200, 400)
+
+lane_lines_image = display_lines(frame, lane_lines)
+if(show):
+    cv2.imshow("lane lines", lane_lines_image)
+#return lane_lines_image
