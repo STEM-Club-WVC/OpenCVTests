@@ -31,7 +31,7 @@ for line in lines:
 #Finally, draw the lines on your srcImage.        # Draw the lines on the  image
 lines_edges = cv2.addWeighted(img, 0.8, line_image, 1, 0)
 
-scale_percent = 90 # percent of original size
+scale_percent = 40 # percent of original size
 width = int(img.shape[1] * scale_percent / 100)
 height = int(img.shape[0] * scale_percent / 100)
 dim = (width, height)
